@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [HomeController::class, 'home'])->name('home.index');
-Route::get('/about', [HomeController::class, 'about'])->name('about.index');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact.index');
-Route::get('/success', [HomeController::class, 'success'])->name('contact.success');
-Route::post('/send_contact', [HomeController::class, 'sendContact'])->name('contact.send');
-
+Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+Route::get('/inventory/items', [InventoryController::class, 'indexJson'])->name('inventory.items');
+Route::post('/inventory/items', [InventoryController::class, 'store'])->name('inventory.store');
+Route::put('/inventory/items/{id}', [InventoryController::class, 'update'])->name('inventory.update');
